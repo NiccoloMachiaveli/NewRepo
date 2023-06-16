@@ -84,6 +84,9 @@
     <Compile Include="programWindow\basketWindow.xaml.cs">
       <DependentUpon>basketWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="programWindow\Check.xaml.cs">
+      <DependentUpon>Check.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Roles.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="programWindow\basketWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="programWindow\Check.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

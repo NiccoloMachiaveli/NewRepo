@@ -51,7 +51,30 @@ namespace WpfApp1.programWindow
 
         private void btnOrderAccess_Click(object sender, RoutedEventArgs e)
         {
+            Random random = new Random();
+            var selectedAddress = cbPickPoint.SelectedItem as PickPoint;
+            if(selectedAddress != null)
+            {
+                Orders newOrder = new Orders();
+                entities.Orders.Add(newOrder);
+                newOrder.dateOrder = DateTime.Now;
+                newOrder.statusOrder = "Новый";
+                newOrder.codeOrder = random.Next(100, 999);
+                newOrder.idPickPoint = (cbPickPoint.SelectedItem as PickPoint).idPickPoint;
+                entities.SaveChanges();
 
+                foreach (var product in OrderProductL)
+                {
+                    ProductOrder productOrder = new ProductOrder();
+                    entities.ProductOrder.Add(productOrder);
+                    productOrder.idOrder = newOrder.idOrder;
+                    productOrder.idProduct = product.idProduct;
+                    entities.SaveChanges();
+                }
+                MessageBox.Show("Заказ успешно сформирован", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                var window = new programWindow.Check(OrderProductL, newOrder);
+                window.ShowDialog();
+            }
         }
     }
 }

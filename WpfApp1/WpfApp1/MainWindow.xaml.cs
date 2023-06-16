@@ -45,7 +45,7 @@ namespace WpfApp1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var basketWindows = new programWindow.basketWindow();
+            var basketWindows = new programWindow.basketWindow(OrderProductL);
             basketWindows.Show();
         }
     }

@@ -5,8 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.programWindow"
         mc:Ignorable="d"
-        Title="basketWindow" Height="450" Width="800">
+        Title="basketWindow" Height="535" Width="928">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DataGrid Name="dataGridProduct" AutoGenerateColumns="False" HorizontalAlignment="Right" IsReadOnly="True" RenderTransformOrigin="0.5,0.5" Width="864" Margin="0,27,32,195">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Изображение">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding photoProduct}" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Название" Binding="{Binding nameProduct}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Описание" Binding="{Binding descriptionProduct}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Производитель" Binding="{Binding manufactureProduct}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" Binding="{Binding totalPrice}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Скидка" Binding="{Binding discountProduct}" Width="*"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Количество" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="1"></Label>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" Name="btnDelet" Click="btnDelet_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Name="lblTotalPrice" Content="Общая стоимость" Margin="0,0,616,86" VerticalAlignment="Bottom" Height="36" HorizontalAlignment="Right" Width="206"/>
+        <Label Name="lblDiscountPrice" Content="Размер скидки" Margin="0,0,616,41" VerticalAlignment="Bottom" Height="40" HorizontalAlignment="Right" Width="206"/>
+        <ComboBox Name="cbPickPoint" Margin="0,0,115,102" VerticalAlignment="Bottom" Height="19" HorizontalAlignment="Right" Width="118"/>
+        <Label Content="Выберите пункт выдачи" Margin="0,0,65,137" VerticalAlignment="Bottom" Height="36" HorizontalAlignment="Right" Width="179"/>
+        <Button x:Name="btnOrderAccess" Content="Оформить заказ" Margin="0,0,116,41" VerticalAlignment="Bottom" Height="29" HorizontalAlignment="Right" Width="116" Click="btnOrderAccess_Click"/>
+
     </Grid>
 </Window>

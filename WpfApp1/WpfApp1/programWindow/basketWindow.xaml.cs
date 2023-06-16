@@ -19,9 +19,39 @@ namespace WpfApp1.programWindow
     /// </summary>
     public partial class basketWindow : Window
     {
-        public basketWindow()
+        BookClubBaseEntities entities = new BookClubBaseEntities();
+        List<Product> OrderProductL = new List<Product>();
+        public basketWindow(List<Product> orderproduct)
         {
             InitializeComponent();
+            OrderProductL = orderproduct;
+            foreach (var adress in entities.PickPoint)
+            {
+                cbPickPoint.Items.Add(adress);
+            }
+            dataGridProduct.ItemsSource = OrderProductL;
+            lblTotalPrice.Content = $"Общая стоимтость: {OrderProductL.Sum(product => product.totalPrice)} руб.";
+            lblDiscountPrice.Content = $"Размер скидки: {OrderProductL.Sum(product => product.priceProduct) - OrderProductL.Sum(product => product.totalPrice)} руб.";
+        }
+
+        private void btnDelet_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedProduct = dataGridProduct.SelectedItem as Product;
+            var result = MessageBox.Show("Подтвердите удаление товара из корзины", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                OrderProductL.Remove(selectedProduct);
+                dataGridProduct.ItemsSource = null;
+                dataGridProduct.ItemsSource = OrderProductL;
+                lblTotalPrice.Content = $"Общая стоимтость: {OrderProductL.Sum(product => product.totalPrice)} руб.";
+                lblDiscountPrice.Content = $"Размер скидки: {OrderProductL.Sum(product => product.priceProduct) - OrderProductL.Sum(product => product.totalPrice)} руб.";
+            }
+        }
+
+        private void btnOrderAccess_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

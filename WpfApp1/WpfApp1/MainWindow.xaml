@@ -29,7 +29,7 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
-        <Button Name="btnOpen" Content="Открыть корзину" HorizontalAlignment="Left" Margin="615,-76,0,0" VerticalAlignment="Top" Height="29" Width="125" Click="Button_Click"/>
+        <Button Name="btnOpen" Content="Открыть корзину" HorizontalAlignment="Right" Margin="0,-76,26,0" VerticalAlignment="Top" Height="29" Width="124" Click="Button_Click"/>
 
     </Grid>
 </Window>

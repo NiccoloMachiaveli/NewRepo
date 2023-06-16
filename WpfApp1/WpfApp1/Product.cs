@@ -28,6 +28,26 @@ namespace WpfApp1
         public Nullable<int> discountProduct { get; set; }
         public Nullable<int> countProduct { get; set; }
         public string photoProduct { get; set; }
+
+        public int totalPrice
+        {
+            get 
+            { 
+                if (this.discountProduct != null && this.discountProduct > 0)
+                {
+                    int disount = (Convert.ToInt32(this.priceProduct * this.discountProduct) / 100);
+                    return this.priceProduct - disount;
+                }
+                else
+                {
+                    return this.priceProduct;
+                }
+            }  
+            set 
+            {
+            
+            }
+        }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductOrder> ProductOrder { get; set; }

@@ -11,7 +11,7 @@ namespace WpfApp1
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class PickPoint
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +19,15 @@ namespace WpfApp1
         {
             this.Orders = new HashSet<Orders>();
         }
-    
+
         public int idPickPoint { get; set; }
         public string addresPickPoint { get; set; }
-    
+
+        public override string ToString()
+        {
+            return addresPickPoint;
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
     }
